@@ -67,7 +67,7 @@ action :disable do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::NginxSite.new(@new_resource.name)
+  @current_resource = Chef::Resource.resource_for_node(:nginx_site, node).new(@new_resource.name)
   @current_resource.name(@new_resource.name)
 
   @current_resource.exists = ::File.exist?(nginx_available_file)
